@@ -1,0 +1,48 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#header{
+    display: flex;
+   
+}
+#header>b{
+   min-width:100px;
+    border:1px solid #dfe4e9;
+    text-align: center;
+    padding:10px 0;
+   
+
+}
+
+.row {
+  display: flex;
+}
+.row > b,
+.row > div {
+  padding: 10px 0;
+  min-width: 100px;
+  border: 1px solid #dfe4e9;
+}
+
+.row > b:first-child {
+  text-align: center;
+}
+
+#options {
+    width:139.5%;
+  padding: 10px;
+  background-color: #ecf0f1;
+}
+
+#active-cell {
+  background-color: white;
+  padding: 2px 20px;
+}
+
+.row > b:first-child {
+  background-color: #fff;
+  position: sticky;
+  left: 0;
+  
+}
