@@ -5,6 +5,9 @@ const textAlignElements = document.getElementsByClassName("text-align");
 const boldButton = document.getElementById("bold");
 const italicButton = document.getElementById("italic");
 const underlinedButton = document.getElementById("underline");
+const fontSizeinput=document.getElementsByTagName("input")[0];
+const fontFamilyDropdown = document.getElementById("fontFamilyDropdown");
+
 
 
 // activeCell defines which cell is selected / active.
@@ -16,8 +19,10 @@ function toggleButtonsStyle(button, isSelected) {
   if (isSelected) {
     // currently selected cell in the bold state.
     button.classList.add("active-option");
+    
   } else {
     button.classList.remove("active-option");
+    
   }
 };
 
@@ -50,6 +55,8 @@ function highlightOptionButtonsOnFocus() {
   //   underlinedButton.classList.remove("active-option");
   // }
   toggleButtonsStyle(underlinedButton, activeOptionsState.isUnderLineSelected);
+  toggleButtonsStyle(fontSizeinput, activeOptionsState.fontSize);
+  toggleButtonsStyle(fontFamilyDropdown, activeOptionsState.fontFamily);
 
   // get the textAlign value
   highlightTextAlignButtons(activeOptionsState.textAlign);
@@ -71,18 +78,50 @@ function onCellFocus(e) {
   const computedStyle = getComputedStyle(activeCell); //gives particual cell htrml elemnt(i.e div for understanding clg(computed style,activecell))
 
   activeOptionsState = {
-    fontFamily: computedStyle.fontFamily,
+    fontFamily: computedStyle.fontFamily !="Times New Roman",
     isBoldSelected: computedStyle.fontWeight === "600",
     isItalicSelected: computedStyle.fontStyle === "italic",
     isUnderLineSelected: computedStyle.textDecoration.includes("underline"),
     textAlign: computedStyle.textAlign,
     textColor: computedStyle.color,
     backgroundColor: computedStyle.backgroundColor,
-    fontSize: computedStyle.fontSize,
+    fontSize: computedStyle.fontSize!="16px"
   };
   
   highlightOptionButtonsOnFocus();
 };
+
+function onChangeSize() {
+  // This function will be triggered when the user changes the input field.
+  if (activeCell) {
+    if (activeOptionsState.fontSize !== fontSizeInput.value + "px") {
+      // Apply the user-defined font size
+      activeCell.style.fontSize = fontSizeInput.value + "px";
+      activeOptionsState.fontSize = fontSizeInput.value + "px";
+    } else {
+      // Reset the font size to the default (16px)
+      activeCell.style.fontSize = "16px";
+      activeOptionsState.fontSize = "16px";
+    }
+  }
+};
+
+function onChangeFontFamily() {
+  if (activeCell) {
+    const selectedFontFamily = fontFamilyDropdown.value;
+    if (activeOptionsState.fontFamily !== selectedFontFamily) {
+      // Apply the user-defined font family
+      activeCell.style.fontFamily = selectedFontFamily;
+      activeOptionsState.fontFamily = selectedFontFamily;
+    } else {
+      // Reset the font family to the default (timesnew roman)
+      activeCell.style.fontFamily = "Times New Roman";
+      activeOptionsState.fontFamily = "Times New Roman";
+    }
+      
+  }
+};
+
 
 function onClickBold(boldButton) {
   // this function will be triggered when user clicks on the Bold button.
@@ -90,6 +129,7 @@ function onClickBold(boldButton) {
    * 1. toggle `active-option` class for the button.
    * 2. get the selected cell.
    */
+  
   boldButton.classList.toggle("active-option");
   if (activeCell) {
     if (activeOptionsState.isBoldSelected === false) {
@@ -101,6 +141,7 @@ function onClickBold(boldButton) {
     }
     activeOptionsState.isBoldSelected = !activeOptionsState.isBoldSelected;
   }
+  // console.log(activeOptionsState);
 };
 
 function onClickItalic(italicButton) {

@@ -5,7 +5,7 @@
 #header {
   display: flex;
   position: sticky;
-  top: 0;
+  top: 80px;
   width: fit-content;
   background-color: #fff;
   z-index: 100;
@@ -39,6 +39,10 @@
 #options {
   padding: 10px;
   background-color: #ecf0f1;
+  position: sticky;
+  top:0px;
+  left:0px;
+  z-index: 100000000000;
 }
 
 #active-cell {
@@ -48,4 +52,13 @@
 
 #body {
   width: fit-content;
+}
+
+
+@media screen (min-width:768px){
+  #responsive{
+    width:100vw;
+    height:100vh;
+    overflow:auto;
+  }
 }

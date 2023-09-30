@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ExcelClone</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <link rel="stylesheet" href="./menu.css">
 </head>
 <body>
-  <main style="width: 100vw; margin: auto; height: 100vh; overflow: scroll;">
+  <main  id="responsive"style="width: 100vw; margin: auto; height: 100vh; overflow: scroll;">
 <div id="options">
   <div class="menus">
+    <select id="fontFamilyDropdown" onchange="onChangeFontFamily()">
+  <option value="Times New Roman">Times New Roman</option>
+  <option value="Arial">Arial</option>
+  <option value="Calibri">Calibri</option>
+  <option value="Arial Black">Arial Black</option>
+</select>
+
+    <input placeholder="Enter Font Size" type="text" id="fontSizeInput" onkeyup="onChangeSize()" />
+<!-- 
+  <input placeholder="14"  type="text"id="bold" onchange="onChangeSize(this)" ></input> -->
   <div id="bold" onclick="onClickBold(this)">B</div>
   <div id="italic" onclick="onClickItalic(this)">I</div>
   <div id="underline"  onclick="onClickUnderline(this)">U</div>
